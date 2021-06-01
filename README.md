@@ -77,24 +77,3 @@ export const logHttpFailure = () => {
   console.log(`User failure ${callConfig.call.myContext}.`);
 };
 ```
-
-
-<!-- ## Events
-
-We can also do event handling. if any return values of the hooks change value we 
-can register an event. For example, lets register when the myUserContext context value changes.
-
-
-```jsx
-const callConfig = createCaller({
-  myUserContext: () => useContext(myUserContext)
-});
-
-
-callConfig.on('myUserContext', (value) => {
-  console.log(`User context value changed to ${value}.`)
-})
-
-
-
-``` -->
