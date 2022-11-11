@@ -26,7 +26,8 @@ const OutsideCallConsumer: React.FC<Default> = ({ config }) => {
 }
 
 interface OutsideCallConsumerWrapperProps {
-  config: Default
+  config: Default;
+  children?: React.ReactNode;
 }
 
 const OutsideCallConsumerWrapper: React.FC<OutsideCallConsumerWrapperProps> = ({ children, config }) => (
