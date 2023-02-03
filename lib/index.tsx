@@ -1,39 +1,43 @@
-import React from 'react'
+import React from "react";
 
-type Default = { [key: string]: any  };
+type Default = { [key: string]: any };
 
 type CallerObj<T extends Default> = {
-    [Property in keyof T]?: ReturnType<T[Property]>
-}
+  [Property in keyof T]?: ReturnType<T[Property]>;
+};
 
 type OutsideConfig<Type extends Default> = {
-  call: CallerObj<Type>
-  initCaller: CallerObj<Type>
-}
+  call: CallerObj<Type>;
+  initCaller: CallerObj<Type>;
+};
 
-export function createCaller<T>(initCaller: T): OutsideConfig<T> {
+export function createCaller<T extends Default>(
+  initCaller: T
+): OutsideConfig<T> {
   return {
     initCaller,
-    call: {}
-  }
+    call: {},
+  };
 }
 
 const OutsideCallConsumer: React.FC<Default> = ({ config }) => {
-  for(let key in config.initCaller) {
-    config.call[key] = config.initCaller[key]()
+  for (let key in config.initCaller) {
+    config.call[key] = config.initCaller[key]();
   }
-  return null
-}
+  return null;
+};
 
 interface OutsideCallConsumerWrapperProps {
-  config: Default
+  config: Default;
 }
 
-const OutsideCallConsumerWrapper: React.FC<OutsideCallConsumerWrapperProps> = ({ children, config }) => (
+const OutsideCallConsumerWrapper: React.FC<
+  React.PropsWithChildren<OutsideCallConsumerWrapperProps>
+> = ({ children, config }) => (
   <>
     {children}
     <OutsideCallConsumer config={config} />
   </>
-)
+);
 
-export default OutsideCallConsumerWrapper
+export default OutsideCallConsumerWrapper;
